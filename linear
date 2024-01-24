@@ -39,3 +39,5 @@ beta1, beta2, fitted_line, deviation = linear_regression(sales, temperature)
 # Display deviation
 print("\nDeviation:")
 print(deviation)
+
+print("ML, sem4")
