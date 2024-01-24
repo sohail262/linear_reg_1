@@ -1,0 +1,41 @@
+import numpy as np
+
+def linear_regression(x, y):
+    # Calculate means
+    x_bar = np.round(np.mean(x), 1)
+    y_bar = np.round(np.mean(y), 1)
+
+    # Calculate differences and squares
+    x_xbar = x - x_bar
+    x_minus_x_bar_square = x_xbar**2
+    y_ybar = y - y_bar
+
+    # Calculate coefficients
+    beta1 = np.sum(x_xbar * y_ybar) / np.sum(x_minus_x_bar_square)
+    beta2 = y_bar - beta1 * x_bar
+
+    # Create the fitted line
+    fitted_line = beta1 * x + beta2
+
+    # Calculate deviation
+    deviation = fitted_line - y
+
+    # Display results
+    print("Fitted Line Coefficients:")
+    print("beta1:", beta1)
+    print("beta2:", beta2)
+    print("\nFitted Line:")
+    print(fitted_line)
+    import seaborn as sns
+    sns.regplot(x=x,y=fitted_line ,scatter=True)
+    return beta1, beta2, fitted_line, deviation
+
+# Example usage
+sales = np.array([316.56,323.83,328.55,250.55,240.31])
+temperature= np.array([42,44,47,36,35])
+
+beta1, beta2, fitted_line, deviation = linear_regression(sales, temperature)
+
+# Display deviation
+print("\nDeviation:")
+print(deviation)
